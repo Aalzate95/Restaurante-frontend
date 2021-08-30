@@ -1,0 +1,48 @@
+.Navbar{
+    width: 100%;
+}
+.Navbar-style{
+    position:fixed;
+    display:flex;
+    flex-direction:row;
+    background-color:white;
+    height:4em;
+    width:100%;
+}
+
+p{
+    color:#6A727C;
+    font-size: 19px;
+    font-weight:bold;
+}
+
+.Navbar-content{
+    display:flex;
+    flex-direction:row;
+}
+
+.Navbar-content p,.RightAlign button,.logo p{ 
+    margin: 1em 0.5em 1em 0.5em;
+}
+
+.RightAlign{
+    display:flex;
+    flex-direction:row;
+    width:100%;
+    justify-content:flex-end;
+    margin-right: 1em;
+}
+
+.Navbar-content p:hover{
+    cursor: pointer;
+}
+
+.Navbar-content p:{
+    background-color:#E0E6ED;
+}
+
+.logo{
+    margin-left:1em;
+    margin-right:2em
+}
+

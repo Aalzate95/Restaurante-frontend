@@ -1,0 +1,24 @@
+.Home{
+    display:flex;
+    flex-direction:column;
+    min-height: 100vh;
+}
+
+.HomeMediaTitles{
+    background-color:#E0E6ED;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding:5em;
+}
+
+.MediaImage{
+    padding:1em;
+}
+.MediaImage img{
+    display:block;
+    background-position: center;
+    background-size: cover;
+    border-radius: 8px;
+    height:auto;
+    max-width: 100%;
+}
