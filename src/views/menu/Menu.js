@@ -14,16 +14,16 @@ const Menu = () => {
         {
             "plate_name": "Lasagna",
             "price": 6,
-            "description": "Tres capas de queso",
+            "description": "Porción",
             "category": "Plato Fuerte",
             "available": true
         },
         {
             "plate_name": "Helado",
             "price": 8,
-            "description": "Chocolatey Vainilla",
+            "description": "Chocolate",
             "category": "Postre",
-            "available": true
+            "available": false
         },
         {
             "plate_name": "Tallarin Al Pesto",
@@ -56,9 +56,9 @@ const Menu = () => {
         {
             "plate_name": "Ossobuco",
             "price": 10,
-            "description": "La major carne del dia!",
+            "description": "La mejor carne del dia!",
             "category": "Plato Fuerte",
-            "available": true
+            "available": false
         },
 
     ]);
