@@ -80,10 +80,10 @@ const Menu = () => {
             <div className="col-md-3 text-center mt-5" style={{ display: `${opt.available ? "inline" : "none"}` }} key={index}>
                 <div className="card">
                     <div className="card-body">
-                        <h6 id="nombre" className="card-title text-md-start size">{opt.plate_name}</h6>
-                        <h6 id="precio" className=" text-md-start">{opt.price}</h6>
-                        <h6 id="descripcion" className="card-text text-md-start">{opt.description}</h6>
-                        <h6 id="categoria" className="card-text text-md-start">{opt.category}</h6>
+                        <h6 id="nombre" className="card-header text-md-start size">{opt.plate_name}</h6>
+                        <h6 id="precio" className=" text-md-start"><strong>Precio:</strong> ${opt.price}</h6>
+                        <h6 id="descripcion" className="card-text text-md-start"> <strong>Descripion:</strong> {opt.description}</h6>
+                        <h6 id="categoria" className="card-text text-md-start"><strong>Categoria:</strong> {opt.category}</h6>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,9 @@ const Menu = () => {
     return (
         <div className="container">
             <div className="row">
-
+                <div className="card-header text-center mt-md-5">
+                    MENU
+                </div>
                 {renderMenu}
             </div>
         </div>
