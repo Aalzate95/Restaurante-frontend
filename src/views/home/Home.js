@@ -1,7 +1,14 @@
 import React,{useState} from 'react';
 import './Home.css'
+import {useHistory} from "react-router-dom";
 
 const Home = () => {
+    const history = useHistory()
+
+    const handleClick = (path) => {
+        history.push(path);
+      }
+
     return ( 
         <div className="Home">
             <div className="HomeMediaTitles">
@@ -14,7 +21,7 @@ const Home = () => {
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                     </div>
                     <div className="MediaButton">
-                        <button>Reservaciones</button>
+                        <button onClick={()=>{handleClick('/reservar')}}>Reservaciones</button>
                     </div>
                 </div>
                 <div className="MediaImage">

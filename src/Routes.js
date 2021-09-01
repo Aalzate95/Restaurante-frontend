@@ -8,6 +8,7 @@ import ContactUs from "./views/contactUs/ContactUs";
 import Home from "./views/home/Home";
 import Menu from "./views/menu/Menu";
 import Navbar from './components/navbar/Navbar';
+import Reservar from './views/reservar/Reservar'
 
 const Routes = () => {
     return ( 
@@ -26,6 +27,11 @@ const Routes = () => {
                 <Route path="/contact-us">
                     <Navbar>
                         <ContactUs/>
+                    </Navbar>
+                </Route>
+                <Route path="/reservar">
+                    <Navbar>
+                        <Reservar/>
                     </Navbar>
                 </Route>
             </Switch>
