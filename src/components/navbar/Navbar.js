@@ -15,7 +15,9 @@ const Navbar = ({children}) => {
         <div className="Navbar">
             <div className="Navbar-style">
                 <div className="Navbar-content logo">
-                    <h3>Logo</h3>
+                <a href="/" class="logo">
+                    <img src="logo192.png"></img>
+                </a>
                 </div>
                 <div className="Navbar-content">
                     <p onClick={()=>{handleClick("/")}}>Inicio</p>
@@ -24,7 +26,7 @@ const Navbar = ({children}) => {
                 </div>
                 <div className="Navbar-content RightAlign">
                     <button>Admin</button>
-                    <button>Reserva</button>
+                    <button onClick={()=>{handleClick('/reservar')}}>Reservar</button>
                 </div>
             </div>
             <div style={{paddingTop:"4em"}}>
