@@ -37,12 +37,16 @@ p{
     cursor: pointer;
 }
 
-.Navbar-content p:{
-    background-color:#E0E6ED;
-}
+
 
 .logo{
-    margin-left:1em;
-    margin-right:2em
+    margin-left:2em;
+    margin-right:2em;
+    max-width: 5%;
+}
+
+.logo img{
+    max-height: 100%;
+    max-width: auto;
 }
 
