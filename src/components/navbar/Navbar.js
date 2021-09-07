@@ -24,7 +24,7 @@ const Navbar = ({children}) => {
                 </div>
                 <div className="Navbar-content RightAlign">
                     <button>Admin</button>
-                    <button>Reserva</button>
+                    <button onClick={()=>{handleClick('/reservar')}}>Reservar</button>
                 </div>
             </div>
             <div style={{paddingTop:"4em"}}>

@@ -1,0 +1,41 @@
+.Reservar{
+    display:flex;
+    flex-direction: column;
+
+}
+
+.Reservar-header{
+    align-items:center;
+    justify-content: middle;
+    text-align:center;
+    background-color:#1C1C1C;
+}
+
+.Reservar-header h1{
+    color:rgb(192, 192, 192);
+}
+
+.Reservar-body{
+    margin: 5em 10em 5em 10em;
+    text-align:center;
+}
+
+.Reservar-options{
+    display:flex;
+    flex-direction:column;
+    margin-top: 3em;
+}
+
+.Reservar-modal{
+    text-align:center;
+}
+
+.green{
+    color:green;
+}
+
+.red{
+    color:red;
+}
+
+
