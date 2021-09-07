@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
-import './Home.css'
+import './Dashboard.css'
 import {useHistory} from "react-router-dom";
 
-const Home = () => {
+const Dashboard = () => {
     const history = useHistory()
 
     const handleClick = (path) => {
@@ -35,4 +35,4 @@ const Home = () => {
      );
 }
  
-export default Home;
+export default Dashboard;

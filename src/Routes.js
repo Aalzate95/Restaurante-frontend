@@ -8,7 +8,8 @@ import ContactUs from "./views/contactUs/ContactUs";
 import Home from "./views/home/Home";
 import Menu from "./views/menu/Menu";
 import Navbar from './components/navbar/Navbar';
-import Reservar from './views/reservar/Reservar'
+import Reservar from './views/reservar/Reservar';
+import Dashboard from './views/dashboard/Dashboard';
 
 const Routes = () => {
 
@@ -39,6 +40,9 @@ const Routes = () => {
                             forceUpdate={forceUpdate}
                         />
                     </Navbar>
+                </Route>
+                <Route path="/Dashboard">
+                    <Dashboard/>
                 </Route>
             </Switch>
         </Router>
