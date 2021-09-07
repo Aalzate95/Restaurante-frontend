@@ -7,17 +7,19 @@ import DailySchedule from '../../components/dailySchedule/DailySchedule';
 
 
 const data = [
-    [{"id":"1","hora":"9-11","ocupado":false},{"id":"8","hora":"9-11","ocupado":false},{"id":"21","hora":"9-11","ocupado":false},{"id":"28","hora":"9-11","ocupado":false},{"id":"35","hora":"9-11","ocupado":false},{"id":"42","hora":"9-11","ocupado":false},{"id":"49","hora":"9-11","ocupado":false}],
-    [{"id":"2","hora":"11-13","ocupado":true},{"id":"9","hora":"11-13","ocupado":false},{"id":"22","hora":"11-13","ocupado":false},{"id":"29","hora":"11-13","ocupado":false},{"id":"36","hora":"11-13","ocupado":false},{"id":"43","hora":"11-13","ocupado":false},{"id":"48","hora":"11-13","ocupado":false}],
-    [{"id":"3","hora":"11-13","ocupado":true},{"id":"10","hora":"11-13","ocupado":false},{"id":"23","hora":"11-13","ocupado":false},{"id":"30","hora":"11-13","ocupado":false},{"id":"37","hora":"11-13","ocupado":false},{"id":"44","hora":"11-13","ocupado":false},{"id":"49","hora":"11-13","ocupado":false}]
+    [{"id":"1","hora":"9h00-11h00","ocupado":false},{"id":"8","hora":"9h00-11h00","ocupado":false},{"id":"21","hora":"9h00-11h00","ocupado":false},{"id":"28","hora":"9h00-11h00","ocupado":false},{"id":"35","hora":"9h00-11h00","ocupado":false},{"id":"42","hora":"9h00-11h00","ocupado":false},{"id":"49","hora":"9h00-11h00","ocupado":false}],
+    [{"id":"2","hora":"11h00-13h00","ocupado":true},{"id":"9","hora":"11h00-13h00","ocupado":false},{"id":"22","hora":"11h00-13h00","ocupado":false},{"id":"29","hora":"11h00-13h00","ocupado":false},{"id":"36","hora":"11h00-13h00","ocupado":false},{"id":"43","hora":"11h00-13h00","ocupado":false},{"id":"48","hora":"11h00-13h00","ocupado":false}],
+    [{"id":"3","hora":"11h00-13h00","ocupado":true},{"id":"10","hora":"11h00-13h00","ocupado":false},{"id":"23","hora":"11h00-13h00","ocupado":false},{"id":"30","hora":"11h00-13h00","ocupado":false},{"id":"37","hora":"11h00-13h00","ocupado":false},{"id":"44","hora":"11h00-13h00","ocupado":false},{"id":"49","hora":"11h00-13h00","ocupado":false}]
 ]
 
 const Reserva = ({forceUpdate}) => {
     const history = useHistory()
     const [show, setShow] = useState(false)
-    const [cantPersonas,setCantPersonas] = useState('');
-    const [fechaReserva,setFechaReserva] = useState('')
-    const [horario,setHorario] = useState(data)
+    const [cantPersonas,setCantPersonas] = useState(1);
+    const [fechaReserva,setFechaReserva] = useState('');
+    const [horario,setHorario] = useState(data);
+    const [cedula, setCedula] = useState('');
+    const [nombre, setNombre] = useState('');
 
     useEffect(() => {
         setHorario(data);
@@ -29,21 +31,11 @@ const Reserva = ({forceUpdate}) => {
         temp.forEach(row=>{
             return(
                 row.forEach(col=>{
-                    if(id===col.id){
-                        console.log(col)
-                        col['ocupado'] = !col.ocupado
-                    }
+                    if(id===col.id ){col['ocupado'] = !col.ocupado}
                 })
                 )
         })
-        /* for(const row in temp){
-            for(const item in row){
-                if(id===item.id){
-                    console.log(item)
-                    item['ocupado'] = true
-                }
-            }
-        } */
+       
         setHorario(temp)
         forceUpdate()
     }
@@ -114,7 +106,14 @@ const Reserva = ({forceUpdate}) => {
                 <label>Seleccione la cantidad de comensales y fecha requerida:</label>
                 <div className="Reservar-options">
                     <div>
-                        <label>Personas: </label>
+                        <label>Nombre:</label>
+                        <input type="text" onChange={(e)=>{setNombre(e.target.value)}}/>
+
+                        <label>No. de Cedula</label>
+                        <input type="text" onChange={(e)=>{setCedula(e.target.value)}}/>
+                    </div>
+                    <div>
+                        <label>Cantidad de personas: </label>
                         <select onChange={(e)=>{setCantPersonas(e.target.value)}}>
                             {RenderCantPersonas}
                         </select>
