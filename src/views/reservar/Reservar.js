@@ -2,13 +2,52 @@ import React,{useState,useEffect} from 'react'
 import {useHistory} from "react-router-dom";
 import './Reservar.css'
 import Modal from '../../components/modal/Modal'
+import DailySchedule from '../../components/dailySchedule/DailySchedule';
 
-const Reserva = () => {
+
+
+const data = [
+    [{"id":"1","hora":"9-11","ocupado":false},{"id":"8","hora":"9-11","ocupado":false},{"id":"21","hora":"9-11","ocupado":false},{"id":"28","hora":"9-11","ocupado":false},{"id":"35","hora":"9-11","ocupado":false},{"id":"42","hora":"9-11","ocupado":false},{"id":"49","hora":"9-11","ocupado":false}],
+    [{"id":"2","hora":"11-13","ocupado":true},{"id":"9","hora":"11-13","ocupado":false},{"id":"22","hora":"11-13","ocupado":false},{"id":"29","hora":"11-13","ocupado":false},{"id":"36","hora":"11-13","ocupado":false},{"id":"43","hora":"11-13","ocupado":false},{"id":"48","hora":"11-13","ocupado":false}],
+    [{"id":"3","hora":"11-13","ocupado":true},{"id":"10","hora":"11-13","ocupado":false},{"id":"23","hora":"11-13","ocupado":false},{"id":"30","hora":"11-13","ocupado":false},{"id":"37","hora":"11-13","ocupado":false},{"id":"44","hora":"11-13","ocupado":false},{"id":"49","hora":"11-13","ocupado":false}]
+]
+
+const Reserva = ({forceUpdate}) => {
     const history = useHistory()
     const [show, setShow] = useState(false)
     const [cantPersonas,setCantPersonas] = useState('');
     const [fechaReserva,setFechaReserva] = useState('')
+    const [horario,setHorario] = useState(data)
 
+    useEffect(() => {
+        setHorario(data);
+    }, [data]);
+
+    const handleReservar = (id) =>{
+        let temp = horario
+
+        temp.forEach(row=>{
+            return(
+                row.forEach(col=>{
+                    if(id===col.id){
+                        console.log(col)
+                        col['ocupado'] = !col.ocupado
+                    }
+                })
+                )
+        })
+        /* for(const row in temp){
+            for(const item in row){
+                if(id===item.id){
+                    console.log(item)
+                    item['ocupado'] = true
+                }
+            }
+        } */
+        setHorario(temp)
+        forceUpdate()
+    }
+        
     const ShowModal = (e,index) => {
         setShow(true)
       };
@@ -55,6 +94,7 @@ const Reserva = () => {
         }
     }
 
+
     return ( 
         <div className="Reservar">
             <Modal show={show} handleClose={HideModal}>
@@ -82,7 +122,10 @@ const Reserva = () => {
 
                     <div>
                         <label>fecha y hora requerida:</label>
-                        <input onChange={(e)=>{setFechaReserva(e.target.value)}} type="datetime-local"/>
+                        <DailySchedule
+                            data={horario}
+                            handleReservar={handleReservar}
+                        />
                     </div>
                 </div>
                 <div className="Reserva-announcement">

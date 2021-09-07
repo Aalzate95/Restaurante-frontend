@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect,useCallback} from "react";
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,6 +11,10 @@ import Navbar from './components/navbar/Navbar';
 import Reservar from './views/reservar/Reservar'
 
 const Routes = () => {
+
+    const [, updateState] = useState();
+    const forceUpdate = useCallback(() => updateState({}), []);
+
     return ( 
         <Router>
             <Switch>
@@ -31,7 +35,9 @@ const Routes = () => {
                 </Route>
                 <Route path="/reservar">
                     <Navbar>
-                        <Reservar/>
+                        <Reservar
+                            forceUpdate={forceUpdate}
+                        />
                     </Navbar>
                 </Route>
             </Switch>

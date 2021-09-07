@@ -1,0 +1,18 @@
+.Cell-Schedule:hover{
+    cursor:pointer;
+    opacity:0.8;
+}
+
+.Reservar-table{
+    margin-top:3em;
+    width: 100%;
+}
+
+.Reservar-table th{
+    background-color: #1C1C1C;
+    color: white;
+}
+
+.Reservar-table tbody{
+    color: white;
+}
