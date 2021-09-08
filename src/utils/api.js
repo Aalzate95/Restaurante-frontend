@@ -8,7 +8,7 @@ const makeGet = (url, options = {}) => {
 };
 
 export const fetchMenu = () => {
-    const url = "http://localhost:8000/v1/management/menu/";
+    const url = "http://localhost:80/api/management/menu/";
     const headers = { "Content-type": "text/plain" };
     const params = {};
     return makeGet(url, { params, headers });
