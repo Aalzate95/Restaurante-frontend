@@ -14,10 +14,10 @@ const makePost = (url, body, options = {}) => {
   
     return fetch(url, { body, headers, method: 'POST' }).then(res => res.json());
 };
-const makeDelete = (url, body, options = {}) => {
+/* const makeDelete = (url, body, options = {}) => {
     const headers = options['headers'] || {};
     return fetch(url, { body, headers, method: 'DELETE' }).then(res => res.json());
-};
+}; */
 
 const makeJSONPost = (url, data, options = {}) => {
     const body = JSON.stringify(data);

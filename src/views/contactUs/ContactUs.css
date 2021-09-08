@@ -1,0 +1,36 @@
+.Contacto{
+    display:flex;
+    flex-direction: column;
+    padding: 5em 15% 5% 15%;
+    align-items: center;
+}
+
+.Contacto-content{
+    display: flex;
+    flex-direction: column;
+    background-color:#1C1C1C;
+    border-radius: 5px;
+    padding:20px;
+    width:500px;
+    margin-top: 20px;
+  }
+  .form-group{
+    margin-bottom: 15px;
+  }
+  
+  .form-group.message {
+    margin-top: 40px;
+  }
+  
+  .form-group.contact-button {
+    margin-bottom: 0;
+    text-align: right;
+  }
+
+  .contact-button a{
+      color:white;
+  }
+  .contact-button a:hover{
+    color:gray;
+    opacity:0.8;
+}

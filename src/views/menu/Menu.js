@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { fetchMenu } from '../../utils/api';
 import './Menu.css'
 
@@ -14,7 +13,6 @@ const Menu = () => {
         try {
             let data = await fetchMenu()
             setOptions(data)
-
         } catch (e) {
             console.error(e);
         }
@@ -22,10 +20,11 @@ const Menu = () => {
     
     const renderMenu = options.map((opt, index) => {
         return (
-            <div className="col-md-3 text-center mt-5" style={{ display: `${opt.available ? "inline" : "none"}` }} key={index}>
-                <div className="card">
-                    <div className="card-body">
-                        <h6 id="nombre" className="card-header text-md-start size">{opt.plate_name}</h6>
+            <div className="Card" style={{ display: `${opt.available ? "inline" : "none"}` }} key={index}>
+                <div className="Card-body">
+                    <div className="">
+                        <div className="img-food" style={{backgroundImage:`url('${opt.imagen}')`}}></div>
+                        <h6 id="nombre" className="Food-nombre">{opt.plate_name}</h6>
                         <h6 id="precio" className=" text-md-start"><strong>Precio:</strong> ${opt.price}</h6>
                         <h6 id="descripcion" className="card-text text-md-start"> <strong>Descripion:</strong> {opt.description}</h6>
                         <h6 id="categoria" className="card-text text-md-start"><strong>Categoria:</strong> {opt.category}</h6>
@@ -35,15 +34,13 @@ const Menu = () => {
         )
     })
     return (
-        <div>
+        <div className="Menu">
             <div className="header">
                     <h1>Menú</h1>
             </div>
         
-            <div className="container Menu">
-                <div className="row">
+            <div className="Menu-body">
                     {renderMenu}
-                </div>
             </div>
         </div>
     );

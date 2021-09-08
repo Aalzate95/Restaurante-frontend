@@ -127,7 +127,7 @@ const Reserva = () => {
                 </div>
                 <br/>
 
-                <button onClick={()=>handleReservar()}>Reservar</button>
+                <button className="button" onClick={()=>handleReservar()}>Reservar</button>
             </div>
         </div>
      );
