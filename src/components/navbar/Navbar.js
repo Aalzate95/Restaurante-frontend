@@ -25,7 +25,7 @@ const Navbar = ({children}) => {
                     <p onClick={()=>{handleClick("/contact-us")}}>Contacto</p>
                 </div>
                 <div className="Navbar-content RightAlign">
-                    <button>Admin</button>
+                    <button onClick={()=>{handleClick('/Signin')}}>Admin</button>
                     <button onClick={()=>{handleClick('/reservar')}}>Reservar</button>
                 </div>
             </div>

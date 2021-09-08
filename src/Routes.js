@@ -46,7 +46,9 @@ const Routes = () => {
                     <Dashboard/>
                 </Route>
                 <Route path="/Signin">
-                    <Login/>
+                    <Navbar>
+                        <Login/>
+                    </Navbar>
                 </Route>
 
             </Switch>
