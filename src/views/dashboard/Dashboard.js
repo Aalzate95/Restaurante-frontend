@@ -33,6 +33,10 @@ const Dashboard = () => {
         setTimeout(updateClock, 1000);
     }
 
+    document.addEventListener("DOMContentLoaded", function(){
+        updateClock()
+    });
+
     return ( 
         <body>
         <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -94,7 +98,6 @@ const Dashboard = () => {
 				</h5>
 				<div class="card-body">
 					<p  id = "time" class="card-text"></p>
-                    <script>window.onload = function(){updateClock()};</script>
 				</div>
 			</div>
 		</div>
