@@ -27,13 +27,13 @@ const makeJSONPost = (url, data, options = {}) => {
     return makePost(url, body, { headers });
 };
   
-const makeJSONDelete = (url, data, options = {}) => {
+/* const makeJSONDelete = (url, data, options = {}) => {
     const body = JSON.stringify(data);
     const headers = options['headers'] || {};
     headers['Content-Type'] = 'application/json';
 
     return makeDelete(url, body, { headers });
-};
+}; */
 
 const getHeaders = token => {
     return {
@@ -56,10 +56,17 @@ export const makeReservation = (ReservationInfo)=>{
     return makeJSONPost(url,ReservationInfo,{headers})
   }
 
-  export const fetchReservations = () => {
+export const fetchReservations = () => {
     const url = "http://localhost/api/management/solicitudesReserva/";
     const headers = { "Content-type": "text/plain" };
     const params = {};
     return makeGet(url, { params, headers });
+}
+
+export const makeLogin = (credentials) =>{
+    const url = "http://localhost/api-token-auth/"
+    const token = Cookies.get('asimetrix_token')
+    const headers = getHeaders(token);
+    return makeJSONPost(url,credentials,{headers})
 }
 

@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import {useHistory} from "react-router-dom";
 import './Reservar.css'
 import Modal from '../../components/modal/Modal'
@@ -35,10 +35,6 @@ const Reserva = () => {
         }
         
     }
-        
-    const ShowModal = (e,index) => {
-        setShow(true)
-      };
 
     const HideModal = () => {
         setShow(false)
@@ -57,11 +53,6 @@ const Reserva = () => {
         return(
             <option key={e+1} value={e+1}>{e+1}</option>
             )
-    })
-
-    const RenderAmbientes = ['Terraza', 'Salón Principal', 'Balcón','Jardín'].map(ambiente=>{
-        return(
-            <option key={ambiente} value={ambiente}>{ambiente}</option>)
     })
 
     const RenderValidator = ()=>{

@@ -1,18 +1,14 @@
 import React,{useState} from 'react';
 import './Dashboard.css'
 import 'bootstrap/dist/css/bootstrap.css';
-import {useHistory} from "react-router-dom";
+
 
 const fecha = new Date();
 
 
 
-const Dashboard = () => {
-    const history = useHistory()
-
-    const handleClick = (path) => {
-        history.push(path);
-    }
+const Dashboard = ({token,userLogin,userAuthenticated}) => {
+    
 
     function updateClock() {
         var d = new Date(); // current date
@@ -46,7 +42,7 @@ const Dashboard = () => {
             </button>
             <div class="navbar-nav">
                 <div class="nav-item text-nowrap">
-                    <a class="nav-link px-3" href="#">Cerrar Sesión</a>
+                    <a class="nav-link px-3" href="/signin" onClick={()=>{userLogin(null)}}>Cerrar Sesión</a>
                 </div>
             </div>
         </header>

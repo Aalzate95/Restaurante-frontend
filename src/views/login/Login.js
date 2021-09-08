@@ -1,7 +1,7 @@
 import {React, useState} from 'react'
 import './Login.css'
 import {useHistory} from "react-router-dom";
-
+import {makeLogin} from  '../../utils/api'
 
 
 const Login = ({userLogin,userAuthenticated}) => {
@@ -12,16 +12,15 @@ const Login = ({userLogin,userAuthenticated}) => {
     const history = useHistory();
 
     const handleLogin = async (e) =>{
-        history.push('/Dashboard')
-        /* e.preventDefault()
+        e.preventDefault()
         try{
-            let token = "ebASJHDAJKWK"
+            let token = await makeLogin(usuario,password)
             userLogin(token.token)
             
-            return history.push('/Dashboard')
+            return history.push('/dashboard')
         }catch(error){
             setError(true)
-        } */
+        }
     }
 
     return (

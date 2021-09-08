@@ -16,7 +16,7 @@ const Navbar = ({children}) => {
             <div className="Navbar-style">
                 <div className="Navbar-content logo">
                 <a href="/" className="logo">
-                    <img src="logo192.png"></img>
+                    <img src="logo192.png" alt="Logo"/>
                 </a>
                 </div>
                 <div className="Navbar-content">
