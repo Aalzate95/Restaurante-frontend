@@ -1,6 +1,9 @@
 import React,{useState} from 'react';
 import './Dashboard.css'
+import 'bootstrap/dist/css/bootstrap.css';
 import {useHistory} from "react-router-dom";
+
+const fecha = new Date();
 
 const Dashboard = () => {
     const history = useHistory()
@@ -47,21 +50,92 @@ const Dashboard = () => {
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Dashboard</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group me-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-          </div>
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            This week
-          </button>
-        </div>
       </div>
+      
+      <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="card bg-default">
+				<h5 class="card-header">
+					Numero de Reservas
+				</h5>
+				<div class="card-body">
+					<p class="card-text">
+						10 reservaciones
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="card">
+				<h5 class="card-header">
+					Fecha y Hora
+				</h5>
+				<div class="card-body">
+					<p  id = "time" class="card-text">
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Numero de Personas</th>
+      <th scope="col">Horario</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Angie Tuarez</th>
+      <td>4</td>
+      <td>11:00</td>
+      <td><a href="">Llegó</a> / <a href="">No llegó</a> / <a href="">Eliminar</a></td>
+    </tr>
+    <tr>
+      <th scope="row">Cesar Carlier</th>
+      <td>4</td>
+      <td>11:30</td>
+      <td><a href="">Llegó</a> / <a href="">No llegó</a> / <a href="">Eliminar</a></td>
+    </tr>
+    <tr>
+      <th scope="row">Juan Diego Vallejo</th>
+      <td>4</td>
+      <td>11:35</td>
+      <td><a href="">Llegó</a> / <a href="">No llegó</a> / <a href="">Eliminar</a></td>
+    </tr>
+  </tbody>
+</table>
     </main>
 </body>
      );
 }
  
 export default Dashboard;
+
+window.onload = function(){
+    function updateClock() {
+        var d = new Date(); // current date
+        var seconds = d.getSeconds().toString().length == 1 ? '0'+d.getSeconds() : d.getSeconds();
+        var minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes();
+        var hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours();
+        var ampm = d.getHours() >= 12 ? 'pm' : 'am';
+        var months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+        var days = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+        
+        
+        var date = days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+' // '+hours+':'+minutes+':'+seconds+" "+ampm;
+        
+        // set the content of the element with the ID time to the formatted string
+        document.getElementById('time').innerHTML = date;
+        
+        // call this function again in 1000ms
+        setTimeout(updateClock, 1000);
+        }
+        updateClock();
+        
+};
