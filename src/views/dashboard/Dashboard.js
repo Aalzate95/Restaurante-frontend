@@ -5,12 +5,33 @@ import {useHistory} from "react-router-dom";
 
 const fecha = new Date();
 
+
+
 const Dashboard = () => {
     const history = useHistory()
 
     const handleClick = (path) => {
         history.push(path);
-      }
+    }
+
+    function updateClock() {
+        var d = new Date(); // current date
+        var seconds = d.getSeconds().toString().length == 1 ? '0'+d.getSeconds() : d.getSeconds();
+        var minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes();
+        var hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours();
+        var ampm = d.getHours() >= 12 ? 'pm' : 'am';
+        var months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+        var days = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+        
+        
+        var date = days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+' // '+hours+':'+minutes+':'+seconds+" "+ampm;
+        
+        // set the content of the element with the ID time to the formatted string
+        document.getElementById('time').innerHTML = date;
+        
+        // call this function again in 1000ms
+        setTimeout(updateClock, 1000);
+    }
 
     return ( 
         <body>
@@ -72,8 +93,8 @@ const Dashboard = () => {
 					Fecha y Hora
 				</h5>
 				<div class="card-body">
-					<p  id = "time" class="card-text">
-					</p>
+					<p  id = "time" class="card-text"></p>
+                    <script>window.onload = function(){updateClock()};</script>
 				</div>
 			</div>
 		</div>
@@ -117,25 +138,4 @@ const Dashboard = () => {
  
 export default Dashboard;
 
-window.onload = function(){
-    function updateClock() {
-        var d = new Date(); // current date
-        var seconds = d.getSeconds().toString().length == 1 ? '0'+d.getSeconds() : d.getSeconds();
-        var minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes();
-        var hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours();
-        var ampm = d.getHours() >= 12 ? 'pm' : 'am';
-        var months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-        var days = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-        
-        
-        var date = days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+' // '+hours+':'+minutes+':'+seconds+" "+ampm;
-        
-        // set the content of the element with the ID time to the formatted string
-        document.getElementById('time').innerHTML = date;
-        
-        // call this function again in 1000ms
-        setTimeout(updateClock, 1000);
-        }
-        updateClock();
-        
-};
+
