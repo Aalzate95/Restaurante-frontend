@@ -2,42 +2,38 @@ import React,{useState,useEffect} from 'react'
 import {useHistory} from "react-router-dom";
 import './Reservar.css'
 import Modal from '../../components/modal/Modal'
-import DailySchedule from '../../components/dailySchedule/DailySchedule';
 
+import {makeReservation} from '../../utils/api'
 
-
-const data = [
-    [{"id":"1","hora":"9h00-11h00","ocupado":false},{"id":"8","hora":"9h00-11h00","ocupado":false},{"id":"21","hora":"9h00-11h00","ocupado":false},{"id":"28","hora":"9h00-11h00","ocupado":false},{"id":"35","hora":"9h00-11h00","ocupado":false},{"id":"42","hora":"9h00-11h00","ocupado":false},{"id":"49","hora":"9h00-11h00","ocupado":false}],
-    [{"id":"2","hora":"11h00-13h00","ocupado":true},{"id":"9","hora":"11h00-13h00","ocupado":false},{"id":"22","hora":"11h00-13h00","ocupado":false},{"id":"29","hora":"11h00-13h00","ocupado":false},{"id":"36","hora":"11h00-13h00","ocupado":false},{"id":"43","hora":"11h00-13h00","ocupado":false},{"id":"48","hora":"11h00-13h00","ocupado":false}],
-    [{"id":"3","hora":"11h00-13h00","ocupado":true},{"id":"10","hora":"11h00-13h00","ocupado":false},{"id":"23","hora":"11h00-13h00","ocupado":false},{"id":"30","hora":"11h00-13h00","ocupado":false},{"id":"37","hora":"11h00-13h00","ocupado":false},{"id":"44","hora":"11h00-13h00","ocupado":false},{"id":"49","hora":"11h00-13h00","ocupado":false}]
-]
-
-const Reserva = ({forceUpdate}) => {
+const Reserva = () => {
     const history = useHistory()
     const [show, setShow] = useState(false)
     const [cantPersonas,setCantPersonas] = useState(1);
     const [fechaReserva,setFechaReserva] = useState('');
-    const [horario,setHorario] = useState(data);
     const [cedula, setCedula] = useState('');
     const [nombre, setNombre] = useState('');
+    const [description,setDescription] = useState('');
 
-    useEffect(() => {
-        setHorario(data);
-    }, [data]);
+    
 
-    const handleReservar = (id) =>{
-        let temp = horario
-
-        temp.forEach(row=>{
-            return(
-                row.forEach(col=>{
-                    if(id===col.id ){col['ocupado'] = !col.ocupado}
+    const handleReservar = async () =>{
+        if(nombre!=='' && cedula !== ''&& fechaReserva !== ''){
+            try{
+                await makeReservation({
+                    "name":nombre,
+                    "id_number":cedula,
+                    "description":description,
+                    "number_of_persons":cantPersonas,
+                    "reservation_date":fechaReserva
                 })
-                )
-        })
-       
-        setHorario(temp)
-        forceUpdate()
+                setShow(true);
+            }catch (e) {
+                console.error(e);
+            }
+        }else{
+            alert('Campos invalidos, revise la información ingresada')
+        }
+        
     }
         
     const ShowModal = (e,index) => {
@@ -56,6 +52,7 @@ const Reserva = ({forceUpdate}) => {
         HideModal()
         handleClick('/')
     }
+
     const RenderCantPersonas = [...Array(6).keys()].map(e =>{
         return(
             <option key={e+1} value={e+1}>{e+1}</option>
@@ -121,29 +118,25 @@ const Reserva = ({forceUpdate}) => {
 
                     <div>
                         <label>fecha y hora requerida:</label>
-                        <DailySchedule
-                            data={horario}
-                            handleReservar={handleReservar}
-                        />
+                        <input onChange={(e)=>{setFechaReserva(e.target.value)}}type="datetime-local"/>
+                    </div>
+                    <div>
+                        <label>Descripción:</label>
+                        <textarea onChange={(e)=>{setDescription(e.target.value)}} placeholder="P. ej. Voy con una persona que usa silla de ruedas."></textarea>
                     </div>
                 </div>
+                <br/>
                 <div className="Reserva-announcement">
                     <p>
                     Por favor, tomar en cuenta que el consumo mínimo por persona reservada es de$30.
                     <br/>
                     Respetando las medidas del COE Nacional las mesas deberan ser maximo de 6 personas.
                     </p>
+                    
                 </div>
-                <div>
-                    <h3>Area del restaurante</h3>
-                    <select>
-                        {RenderAmbientes}
-                    </select>
-                </div>
-                
                 <br/>
 
-                <button onClick={ShowModal}>Reservar</button>
+                <button onClick={()=>handleReservar()}>Reservar</button>
             </div>
         </div>
      );

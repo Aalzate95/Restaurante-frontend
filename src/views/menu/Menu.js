@@ -19,6 +19,7 @@ const Menu = () => {
             console.error(e);
         }
     }
+    
     const renderMenu = options.map((opt, index) => {
         return (
             <div className="col-md-3 text-center mt-5" style={{ display: `${opt.available ? "inline" : "none"}` }} key={index}>
