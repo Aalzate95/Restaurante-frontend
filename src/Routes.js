@@ -10,6 +10,7 @@ import Menu from "./views/menu/Menu";
 import Navbar from './components/navbar/Navbar';
 import Reservar from './views/reservar/Reservar';
 import Dashboard from './views/dashboard/Dashboard';
+import Login from "./views/login/Login";
 
 const Routes = () => {
 
@@ -44,6 +45,10 @@ const Routes = () => {
                 <Route path="/Dashboard">
                     <Dashboard/>
                 </Route>
+                <Route path="/Signin">
+                    <Login/>
+                </Route>
+
             </Switch>
         </Router>
      );

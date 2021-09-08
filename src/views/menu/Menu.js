@@ -1,80 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { fetchMenu } from '../../utils/api';
+import './Menu.css'
 
 const Menu = () => {
-    const [options, setOptios] = useState([
-        {
-            "plate_name": "Huevos a la Italian",
-            "price": 5,
-            "description": "El mejor desayuno",
-            "category": "Desayuno",
-            "available": true
-        },
-        {
-            "plate_name": "Lasagna",
-            "price": 6,
-            "description": "Porción",
-            "category": "Plato Fuerte",
-            "available": true
-        },
-        {
-            "plate_name": "Helado",
-            "price": 8,
-            "description": "Chocolate",
-            "category": "Postre",
-            "available": false
-        },
-        {
-            "plate_name": "Tallarin Al Pesto",
-            "price": 9,
-            "description": "Tres capas de queso",
-            "category": "Plato Fuerte",
-            "available": true
-        },
-        {
-            "plate_name": "Mega Margarita",
-            "price": 10,
-            "description": "Bebida refrescante",
-            "category": "Bebidas",
-            "available": true
-        },
-        {
-            "plate_name": "Risotto",
-            "price": 14.5,
-            "description": "Mucho queso",
-            "category": "Plato Fuerte",
-            "available": true
-        },
-        {
-            "plate_name": "Tiramisú",
-            "price": 9,
-            "description": "El mejor postre",
-            "category": "Postre",
-            "available": true
-        },
-        {
-            "plate_name": "Ossobuco",
-            "price": 10,
-            "description": "La mejor carne del dia!",
-            "category": "Plato Fuerte",
-            "available": false
-        },
+    const [options, setOptions] = useState([]);
 
-    ]);
-
-    /* useEffect(() => {
+    useEffect(() => {
         getData()
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
- */
-    /* const getData = async () => {
+
+    const getData = async () => {
         try {
             let data = await fetchMenu()
-            console.log(data)
+            setOptions(data)
+
         } catch (e) {
             console.error(e);
         }
-    } */
+    }
+    
     const renderMenu = options.map((opt, index) => {
         return (
             <div className="col-md-3 text-center mt-5" style={{ display: `${opt.available ? "inline" : "none"}` }} key={index}>
@@ -90,12 +35,15 @@ const Menu = () => {
         )
     })
     return (
-        <div className="container">
-            <div className="row">
-                <div className="card-header text-center mt-md-5">
-                    MENU
+        <div>
+            <div className="header">
+                    <h1>Menú</h1>
+            </div>
+        
+            <div className="container Menu">
+                <div className="row">
+                    {renderMenu}
                 </div>
-                {renderMenu}
             </div>
         </div>
     );

@@ -11,10 +11,10 @@ const Home = () => {
 
     return ( 
         <div className="Home">
-            <div class="container-fluid" id="containerBanner">
-                <div class="row">
-                    <div class="col-md-8 " id="bannerIzq">
-                        <div class="jumbotron vertical-center">
+            <div className="container-fluid" id="containerBanner">
+                <div className="row">
+                    <div className="col-md-8 " id="bannerIzq">
+                        <div className="jumbotron vertical-center">
                                 <h1>
                                     La Esquina de Alex
                                 </h1>
@@ -22,11 +22,11 @@ const Home = () => {
                                     La mejor comida Italiana de Guayaquil.
                                 </h2>
                                 <p>
-                                    <a class="btn btn-primary btn-large" onClick={()=>{handleClick('/reservar')}}>Reservar</a>
+                                    <a className="btn btn-primary btn-large" onClick={()=>{handleClick('/reservar')}}>Reservar</a>
                                 </p>
                             </div>
                     </div>
-                    <div class="col-md-4 vertical-center" id="bannerDer">
+                    <div className="col-md-4 vertical-center" id="bannerDer">
                         <img src="logo512.png"></img>
                     </div>
                 </div>
