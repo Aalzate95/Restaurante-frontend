@@ -1,3 +1,16 @@
 .App {
   text-align: center;
 }
+
+.header{
+  align-items:center;
+  justify-content: middle;
+  text-align:center;
+  background-color:#1C1C1C;
+  position:fixed;
+  width:100%;
+}
+
+.header h1{
+  color:rgb(192, 192, 192);
+}
