@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { fetchMenu } from '../../utils/api';
+import './Menu.css'
 
 const Menu = () => {
     const [options, setOptios] = useState([
@@ -90,12 +91,15 @@ const Menu = () => {
         )
     })
     return (
-        <div className="container">
-            <div className="row">
-                <div className="card-header text-center mt-md-5">
-                    MENU
+        <div>
+            <div className="header">
+                    <h1>Menú</h1>
+            </div>
+        
+            <div className="container Menu">
+                <div className="row">
+                    {renderMenu}
                 </div>
-                {renderMenu}
             </div>
         </div>
     );

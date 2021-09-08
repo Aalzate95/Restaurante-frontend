@@ -93,7 +93,7 @@ const Reserva = ({forceUpdate}) => {
                 {RenderValidator()}
             </Modal>
 
-            <div className="Reservar-header">
+            <div className="header">
                     <h1>Reservas</h1>
             </div>
             <div className="Reservar-body">
