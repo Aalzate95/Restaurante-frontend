@@ -14,6 +14,13 @@ const makePost = (url, body, options = {}) => {
   
     return fetch(url, { body, headers, method: 'POST' }).then(res => res.json());
 };
+
+const makeDeleteID = (url, options = {}) => {
+    const headers = options['headers'] || {};
+    headers['Content-type'] ='text/plain';
+    return fetch(url, { headers, method: 'DELETE'}).then(res =>res.json());
+};
+
 /* const makeDelete = (url, body, options = {}) => {
     const headers = options['headers'] || {};
     return fetch(url, { body, headers, method: 'DELETE' }).then(res => res.json());
@@ -51,7 +58,7 @@ export const fetchMenu = () => {
 
 export const makeReservation = (ReservationInfo)=>{
     const url = "http://localhost/api/management/solicitudesReserva/"
-    const token = Cookies.get('asimetrix_token')
+    const token = Cookies.get('sessionid')
     const headers = getHeaders(token);
     return makeJSONPost(url,ReservationInfo,{headers})
   }
@@ -65,8 +72,15 @@ export const fetchReservations = () => {
 
 export const makeLogin = (credentials) =>{
     const url = "http://localhost/api-token-auth/"
-    const token = Cookies.get('asimetrix_token')
+    const token = Cookies.get('sessionid')
     const headers = getHeaders(token);
     return makeJSONPost(url,credentials,{headers})
+}
+
+export const deleteReservation = (id) =>{
+    const url = `http://localhost/api/management/solicitudesReserva/${id}`
+    const token = Cookies.get('sessionid')
+    const headers = getHeaders(token);
+    return makeDeleteID (url,{headers});
 }
 

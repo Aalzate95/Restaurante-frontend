@@ -102,3 +102,7 @@ body {
   .table{
       margin-top: 5em;
   }
+  .dashboard-actions:hover{
+    cursor: pointer;
+    opacity: 0.8;
+  }

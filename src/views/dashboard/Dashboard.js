@@ -1,13 +1,44 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import './Dashboard.css'
 import 'bootstrap/dist/css/bootstrap.css';
-
-
-const fecha = new Date();
-
-
+import { fetchReservations,deleteReservation } from '../../utils/api';
 
 const Dashboard = ({token,userLogin,userAuthenticated}) => {
+    const [reservas,setReservas] = useState([])
+
+    useEffect(() => {
+      getData()
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    
+    const getData = async () => {
+      try {
+          let data = await fetchReservations()
+          setReservas(data)
+      } catch (e) {
+          console.error(e);
+      }
+  }
+
+  const deleteReservation = async (id) =>{
+    try {
+      await deleteReservation(id)
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+    const renderReservas = reservas.map((reserva)=>{
+      return(
+        <tr key={reserva.id}>
+          <th scope="row">{reserva.name}</th>
+          <td>{reserva.id_number}</td>
+          <td>{reserva.description}</td>
+          <td>{reserva.number_of_persons}</td>
+          <td>{reserva.reservation_date.slice(0,16)}</td>
+          <td><label className="dashboard-actions">Llegó</label> / <label className="dashboard-actions">No llegó</label> / <label className="dashboard-actions" onClick={()=>{deleteReservation(reserva.id)}}>Eliminar</label></td>
+        </tr>
+        )
+    })
     
 
     function updateClock() {
@@ -34,31 +65,31 @@ const Dashboard = ({token,userLogin,userAuthenticated}) => {
     });
 
     return ( 
-        <body>
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">La Esquina de Alex</a>
-            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+        <div>
+        <header className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+            <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">La Esquina de Alex</a>
+            <button className="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="navbar-nav">
-                <div class="nav-item text-nowrap">
-                    <a class="nav-link px-3" href="/signin" onClick={()=>{userLogin(null)}}>Cerrar Sesión</a>
+            <div className="navbar-nav">
+                <div className="nav-item text-nowrap">
+                    <a className="nav-link px-3" href="/signin" onClick={()=>{userLogin(null)}}>Cerrar Sesión</a>
                 </div>
             </div>
         </header>
 
-        <div class="container-fluid">
-        <div class="row">
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="position-sticky pt-3">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
+        <div className="container-fluid">
+        <div className="row">
+        <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div className="position-sticky pt-3">
+            <ul className="nav flex-column">
+                <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="#">
                     Reservaciones
                 </a>
                 </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">
+                <li className="nav-item">
+                <a className="nav-link" href="#">
                     <span data-feather="file"></span>
                     Menu
                 </a>
@@ -68,40 +99,40 @@ const Dashboard = ({token,userLogin,userAuthenticated}) => {
         </nav>
     </div>
 </div>
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
+<main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 className="h2">Dashboard</h1>
       </div>
       
-      <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-6">
-			<div class="card bg-default">
-				<h5 class="card-header">
+      <div className="container-fluid">
+	<div className="row">
+		<div className="col-md-6">
+			<div className="card bg-default">
+				<h5 className="card-header">
 					Numero de Reservas
 				</h5>
-				<div class="card-body">
-					<p class="card-text">
-						10 reservaciones
+				<div className="card-body">
+					<p className="card-text">
+						{reservas.length}
 					</p>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
-			<div class="card">
-				<h5 class="card-header">
+		<div className="col-md-6">
+			<div className="card">
+				<h5 className="card-header">
 					Fecha y Hora
 				</h5>
-				<div class="card-body">
-					<p  id = "time" class="card-text"></p>
+				<div className="card-body">
+					<p  id = "time" className="card-text"></p>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<table class="table">
-  <thead class="thead-dark">
+<table className="table">
+  <thead className="thead-dark">
     <tr>
       <th scope="col">Nombre</th>
       <th scope="col">Cedula</th>
@@ -112,34 +143,11 @@ const Dashboard = ({token,userLogin,userAuthenticated}) => {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">Angie Tuarez</th>
-      <td>0999999999</td>
-      <td>Llevo todos mis gatos</td>
-      <td>4</td>
-      <td>7 de Sept, 11:00</td>
-      <td><a href="">Llegó</a> / <a href="">No llegó</a> / <a href="">Eliminar</a></td>
-    </tr>
-    <tr>
-      <th scope="row">Cesar Carlier</th>
-      <td>0999999999</td>
-      <td>Llevo todos mis gatos</td>
-      <td>4</td>
-      <td>7 de Sept, 11:00</td>
-      <td><a href="">Llegó</a> / <a href="">No llegó</a> / <a href="">Eliminar</a></td>
-    </tr>
-    <tr>
-      <th scope="row">Juan Diego Vallejo</th>
-      <td>0999999999</td>
-      <td>Llevo todos mis gatos</td>
-      <td>4</td>
-      <td>7 de Sept, 11:00</td>
-      <td><a href="">Llegó</a> / <a href="">No llegó</a> / <a href="">Eliminar</a></td>
-    </tr>
+      {renderReservas}
   </tbody>
 </table>
     </main>
-</body>
+</div>
      );
 }
  
