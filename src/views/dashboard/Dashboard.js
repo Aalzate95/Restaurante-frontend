@@ -108,28 +108,36 @@ const Dashboard = () => {
   <thead class="thead-dark">
     <tr>
       <th scope="col">Nombre</th>
+      <th scope="col">Cedula</th>
+      <th scope="col">Descripcion</th>
       <th scope="col">Numero de Personas</th>
-      <th scope="col">Horario</th>
-      <th scope="col">Acciones</th>
+      <th scope="col">Fecha de Reservacion</th>
+      <th scope="col">Estado</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row">Angie Tuarez</th>
+      <td>0999999999</td>
+      <td>Llevo todos mis gatos</td>
       <td>4</td>
-      <td>11:00</td>
+      <td>7 de Sept, 11:00</td>
       <td><a href="">Llegó</a> / <a href="">No llegó</a> / <a href="">Eliminar</a></td>
     </tr>
     <tr>
       <th scope="row">Cesar Carlier</th>
+      <td>0999999999</td>
+      <td>Llevo todos mis gatos</td>
       <td>4</td>
-      <td>11:30</td>
+      <td>7 de Sept, 11:00</td>
       <td><a href="">Llegó</a> / <a href="">No llegó</a> / <a href="">Eliminar</a></td>
     </tr>
     <tr>
       <th scope="row">Juan Diego Vallejo</th>
+      <td>0999999999</td>
+      <td>Llevo todos mis gatos</td>
       <td>4</td>
-      <td>11:35</td>
+      <td>7 de Sept, 11:00</td>
       <td><a href="">Llegó</a> / <a href="">No llegó</a> / <a href="">Eliminar</a></td>
     </tr>
   </tbody>
